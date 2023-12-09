@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { MetaMaskProvider } from '@metamask/sdk-react';
 import { CHAIN_ID } from '@/lib/constants';
-import { safeAuthInitOptions, safeAuthPack } from '@/lib/safeConf';
+import { init } from '@/lib/safeConf';
 import { usePersistSafeAuthStore, useSafeAuthStore } from '@/store/safeAuthStore';
 import { BrowserProvider, Eip1193Provider, ethers } from 'ethers'
 
@@ -11,24 +11,25 @@ export default function AllProviders({ children }: {
 }) {
   const [renderd, setRendered] = useState<boolean>(false)
   const { isAuthenticated, setUserInfo, setIsAuthenticated, setSafeAuthSignInResponse } = usePersistSafeAuthStore();
-  const { setSafeAuthPack, setProvider } = useSafeAuthStore();
+  const { safeAuthPack, setSafeAuthPack, setProvider } = useSafeAuthStore();
   useEffect(() => {
     setRendered(true);
-    (async () => {
-      await safeAuthPack.init(safeAuthInitOptions);
-      setSafeAuthPack(safeAuthPack);
+  }, [])
+  useEffect(() => {
+    setTimeout(() => {
+      init((safeAuthPack) => {
+        setSafeAuthPack(safeAuthPack);
       safeAuthPack.subscribe('accountsChanged', async (accounts) => {
         console.log('safeAuthPack:accountsChanged', accounts, safeAuthPack.isAuthenticated)
         if (safeAuthPack.isAuthenticated) {
           const signInInfo = await safeAuthPack?.signIn()
-
           setSafeAuthSignInResponse(signInInfo)
           setIsAuthenticated(true)
         }
-
       })
-    })()
-  }, [])
+      })
+    }, 1000)
+  }, []);
   useEffect(() => {
     if (!safeAuthPack || !isAuthenticated) return
       ; (async () => {
@@ -44,7 +45,7 @@ export default function AllProviders({ children }: {
           setProvider(provider)
         }
       })()
-  }, [isAuthenticated, safeAuthPack]);
+  }, [isAuthenticated]);
   if (renderd)
     return (
       <MetaMaskProvider

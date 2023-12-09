@@ -23,9 +23,9 @@ interface SafeAuthPersistStore {
   isAuthenticated: boolean
   setIsAuthenticated: (isAuthenticated: boolean) => void
   safeAuthSignInResponse: AuthKitSignInData | undefined
-  setSafeAuthSignInResponse : (safeAuthSignInResponse: AuthKitSignInData | undefined) => void;
+  setSafeAuthSignInResponse: (safeAuthSignInResponse: AuthKitSignInData | undefined) => void;
   userInfo: SafeAuthUserInfo | undefined
-  setUserInfo: (userInfo: SafeAuthUserInfo| undefined) => void
+  setUserInfo: (userInfo: SafeAuthUserInfo | undefined) => void
 }
 
 export const usePersistSafeAuthStore = create<SafeAuthPersistStore>()(
@@ -33,12 +33,13 @@ export const usePersistSafeAuthStore = create<SafeAuthPersistStore>()(
     (set, get) => ({
       isAuthenticated: false,
       setIsAuthenticated: (isAuthenticated) => set(() => ({ isAuthenticated })),
-  
+
       safeAuthSignInResponse: undefined,
-      setSafeAuthSignInResponse: (safeAuthSignInResponse)=> set(() => ({safeAuthSignInResponse})),
-  
+      setSafeAuthSignInResponse: (safeAuthSignInResponse) => set(() => ({ safeAuthSignInResponse })),
+
       userInfo: undefined,
-      setUserInfo: (userInfo)=> set(() => ({userInfo})),    }),
+      setUserInfo: (userInfo) => set(() => ({ userInfo })),
+    }),
     {
       name: 'safeAuthStore',
     },

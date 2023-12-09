@@ -18,14 +18,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-        <AllProviders>
+      <AllProviders>
         <body className={inter.className}>
           <section className='flex min-h-screen flex-col items-center justify-between bg-[#FFEED9]'>
             <Navbar />
             {children}
           </section>
         </body>
-        </AllProviders>
+      </AllProviders>
     </html>
   )
 }

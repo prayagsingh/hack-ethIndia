@@ -6,7 +6,7 @@ interface PersistLoginStore {
   isAuthenticated: boolean
   setIsAuthenticated: (isAuthenticated: boolean) => void
   authenticationMethod: 'metamask' | 'safeauth' | undefined
-  setAuthenticationMethod : (authenticationMethod: 'metamask' | 'safeauth') => void
+  setAuthenticationMethod: (authenticationMethod: 'metamask' | 'safeauth' | undefined) => void
 }
 
 export const usePersistLoginStore = create<PersistLoginStore>()(
@@ -14,9 +14,9 @@ export const usePersistLoginStore = create<PersistLoginStore>()(
     (set, get) => ({
       isAuthenticated: false,
       setIsAuthenticated: (isAuthenticated) => set(() => ({ isAuthenticated })),
-  
+
       authenticationMethod: undefined,
-      setAuthenticationMethod: (authenticationMethod)=> set(() => ({authenticationMethod})),
+      setAuthenticationMethod: (authenticationMethod) => set(() => ({ authenticationMethod })),
     }),
     {
       name: 'loginStore',
