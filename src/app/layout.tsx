@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import AllProviders from '@/components/AllProviders'
+import Navbar from '@/components/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +20,10 @@ export default function RootLayout({
     <html lang="en">
         <AllProviders>
         <body className={inter.className}>
+          <section className='flex min-h-screen flex-col items-center justify-between bg-[#FFEED9]'>
+            <Navbar />
             {children}
+          </section>
         </body>
         </AllProviders>
     </html>
