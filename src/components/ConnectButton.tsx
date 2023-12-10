@@ -10,6 +10,9 @@ import Image from "next/image";
 import { AlertDialog, AlertDialogContent, AlertDialogTitle, AlertDialogTrigger, AlertDialogDescription, AlertDialogCancel } from "./ui/AlertDialog";
 import { usePersistLoginStore } from "@/store/loginStore";
 import { useEffect } from "react";
+import { CgProfile } from "react-icons/cg";
+import Link from "next/link";
+
 
 const ConnectButton = () => {
   const { sdk, connected, connecting } = useSDK();
@@ -26,7 +29,11 @@ const ConnectButton = () => {
     }
   }, [])
   if (isAuthenticated)
-    return <></>
+    return <Link href='/profile'>
+    <Button className="gap-x-2">
+      <CgProfile className='w-6 h-6'/>
+  </Button>
+  </Link>
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
