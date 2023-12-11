@@ -2,15 +2,15 @@ import React from "react";
 
 type FilterButtonProps = {
 	label: string;
-	isSelected?:boolean;
+	isSelected?: boolean;
 	onFilterSelect: (label: string) => void;
 };
 
 
 const FilterButton: React.FC<FilterButtonProps> = ({
 	label,
-    onFilterSelect,
-    isSelected
+	onFilterSelect,
+	isSelected
 }) => {
 	const handleClick = () => {
 		onFilterSelect(label);
@@ -18,11 +18,10 @@ const FilterButton: React.FC<FilterButtonProps> = ({
 
 	return (
 		<div
-			className={` ${
-				isSelected
+			className={` ${isSelected
 					? "bg-[#0000004D] rounded-xl py-[18px] px-[23px]"
 					: "text-black text-2xl font-semibold"
-			} cursor-pointer`}
+				} cursor-pointer`}
 			onClick={handleClick}
 		>
 			{label}

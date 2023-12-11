@@ -10,7 +10,7 @@ import eth from '@/icons/eth.svg'
 import { FaExternalLinkAlt } from "react-icons/fa";
 
 export const NFTCardDetails = () => {
-  return (
+	return (
 		<div className='mx-5 flex flex-col gap-y-2'>
 			<div className='flex gap-x-[62px] '>
 				<div className='h-[520px] w-[704px] '>
@@ -119,5 +119,5 @@ export const NFTCardDetails = () => {
 				</div>
 			</div>
 		</div>
-  );
+	);
 }
